@@ -17,7 +17,8 @@
 ---
 
 ## ファイル構成
-``` shogi-timer/
+```
+shogi-timer/
 ├── index.html      # メインのHTMLファイル
 ├── style.css       # タイマーとボタンのスタイル
 ├── script.js       # タイマーの動作を制御するJavaScript
