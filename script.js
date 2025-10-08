@@ -59,6 +59,15 @@ switchBtn.addEventListener("click", () => {
   // 既存タイマー停止
   clearInterval(timerId);
 
+  // タイマーの文字色を更新
+  if(currentPlayer === "A") {
+    playerAEl.classList.add("active");
+    playerBEl.classList.remove("active");
+  } else {
+    playerBEl.classList.add("active");
+    playerAEl.classList.remove("active");
+  }
+
   // カウントダウン開始
   timerId = setInterval(tick, 1000);
 });
