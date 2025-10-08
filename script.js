@@ -61,11 +61,11 @@ switchBtn.addEventListener("click", () => {
 
   // タイマーの文字色を更新
   if(currentPlayer === "A") {
-    playerAEl.classList.add("active");
-    playerBEl.classList.remove("active");
+    playerA.classList.add("active");
+    playerB.classList.remove("active");
   } else {
-    playerBEl.classList.add("active");
-    playerAEl.classList.remove("active");
+    playerB.classList.add("active");
+    playerA.classList.remove("active");
   }
 
   // カウントダウン開始
