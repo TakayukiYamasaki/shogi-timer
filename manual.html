@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>将棋タイマー教材版</title>
+<style>
+body { 
+    text-align: left; 
+    font-family: sans-serif; 
+    line-height: 1.6; 
+    background:#f9f9f9; 
+    margin:20px;
+}
+h1 { margin-top: 20px; font-size:2em; }
+h2 { margin-top:30px; font-size:1.5em; }
+.timer { font-size:48px; margin:20px 0; }
+button { padding:10px 20px; font-size:16px; margin:5px; cursor:pointer; }
+pre { 
+    background:#eee; 
+    padding:10px; 
+    overflow-x:auto; 
+    border-radius:5px; 
+}
+hr { margin:30px 0; }
+ul, ol { margin-left:20px; }
+img { max-width:100%; height:auto; border:1px solid #ccc; border-radius:5px; margin:10px 0; }
+a { text-decoration:none; color: #0645AD; }
+a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<h1>将棋タイマーをつくろう</h1>
+<p>～HTML・CSS・JavaScriptで学ぶプログラミング入門～</p>
+<hr>
+
+<h2>目次</h2>
+<ol>
+<li><a href="#chapter1">はじめに</a></li>
+<li><a href="#chapter2">準備</a></li>
+<li><a href="#chapter3">HTMLの作成</a></li>
+<li><a href="#chapter4">CSSで見た目を整える</a></li>
+<li><a href="#chapter5">JavaScriptで動きをつける</a></li>
+<li><a href="#chapter6">スタート／切り替え機能</a></li>
+<li><a href="#chapter7">リセット機能</a></li>
+<li><a href="#chapter8">まとめ</a></li>
+<li><a href="#chapter9">発展課題</a></li>
+<li><a href="#chapter10">画像を挿入する</a></li>
+</ol>
+
+<h2 id="chapter1">1章　はじめに</h2>
+<p>将棋には「持ち時間」を決めて対局するルールがあります。そのときに使うのが「将棋タイマー」です。</p>
+<p>今回はWebブラウザで動くアプリとして作ります。</p>
+<p>学ぶこと: <b>HTML</b>、<b>CSS</b>、<b>JavaScript</b></p>
+
+<h2 id="chapter2">2章　準備</h2>
+<ul>
+<li>作業用フォルダ: shogi-timer/</li>
+<li>中身: index.html, style.css, script.js</li>
+<li>エディタとブラウザを用意</li>
+</ul>
+
+<h2 id="chapter3">3章　HTMLの作成</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;将棋タイマー&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;将棋タイマー&lt;/h1&gt;
+  &lt;div id="playerA" class="timer"&gt;15:00&lt;/div&gt;
+  &lt;div id="playerB" class="timer"&gt;15:00&lt;/div&gt;
+  &lt;button id="switchBtn"&gt;スタート/切り替え&lt;/button&gt;
+  &lt;button id="resetBtn"&gt;リセット&lt;/button&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h2 id="chapter4">4章　CSSで見た目を整える</h2>
+<pre><code>body { text-align:left; font-family:sans-serif; }
+h1 { margin-top:20px; }
+.timer { font-size:48px; margin:20px 0; }
+button { padding:10px 20px; font-size:16px; margin:5px; cursor:pointer; }
+</code></pre>
+
+<h2 id="chapter5">5章　JavaScriptで動きをつける（基礎編）</h2>
+<pre><code>// 初期値（15分）
+let initialMinutes = 15;
+let timeA = initialMinutes * 60;
+let timeB = initialMinutes * 60;
+
+// HTML要素取得
+const playerAEl = document.getElementById("playerA");
+const playerBEl = document.getElementById("playerB");
+
+// 秒数を mm:ss に変換
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+}
+
+// 表示更新
+function updateDisplay() {
+  playerAEl.textContent = formatTime(timeA);
+  playerBEl.textContent = formatTime(timeB);
+}
+
+// 初期表示
+updateDisplay();
+</code></pre>
+
+<h2 id="chapter6">6章　スタート／切り替え機能</h2>
+<pre><code>
+// タイマーID
+let timerId = null;
+let currentPlayer = null;
+
+// HTML要素取得
+const switchBtn = document.getElementById("switchBtn");
+
+// カウントダウン関数
+function tick() {
+  if(currentPlayer === "A"){
+    if(timeA > 0){ timeA--; }
+    else { clearInterval(timerId); alert("プレイヤーAの時間切れ！"); }
+  } else if(currentPlayer === "B"){
+    if(timeB > 0){ timeB--; }
+    else { clearInterval(timerId); alert("プレイヤーBの時間切れ！"); }
+  }
+  updateDisplay();
+}
+
+// スタート／切り替えボタン
+switchBtn.addEventListener("click", () => {
+  currentPlayer = currentPlayer === "A" ? "B" : "A" || "A";
+  clearInterval(timerId);
+  timerId = setInterval(tick, 1000);
+});
+</code></pre>
+
+<h2 id="chapter7">7章　リセット機能</h2>
+<pre><code>
+const resetBtn = document.getElementById("resetBtn");
+
+resetBtn.addEventListener("click", () => {
+  clearInterval(timerId);
+  timeA = initialMinutes*60;
+  timeB = initialMinutes*60;
+  currentPlayer = null;
+  updateDisplay();
+});
+</code></pre>
+
+<h2 id="chapter8">8章　まとめ</h2>
+<p>HTML・CSS・JavaScriptの役割を理解し、スタート/切り替えやリセット機能を実装しました。</p>
+
+<h2 id="chapter9">9章　発展課題</h2>
+<ul>
+<li>制限時間を自由に設定できるようにする</li>
+<li>時間切れ時に音を鳴らす</li>
+<li>スマホ対応や将棋盤風デザインにする</li>
+</ul>
+
+<h2 id="chapter10">10章　画像を挿入しよう</h2>
+<p>タイマー教材に画像を追加すると、見やすさや楽しさが増えます。</p>
+
+<h3>ステップ1: 画像を準備</h3>
+<ul>
+  <li>リポジトリ内に <code>images/</code> フォルダを作成</li>
+  <li>画像を <code>images/timer.png</code> のように保存</li>
+</ul>
+
+<h3>ステップ2: imgタグで表示</h3>
+<pre><code>&lt;img src="images/timer.png" alt="タイマー画像" width="200"&gt;</code></pre>
+
+<h3>ステップ3: 実際に画像表示</h3>
+<!-- <img src="https://via.placeholder.com/200x100.png?text=Timer+Example" alt="タイマー画像"> -->
+
+<h3>ステップ4: GitHub Pagesでの表示</h3>
+<ul>
+  <li>リポジトリに push した <code>index.html</code> と <code>images/timer.png</code> を管理</li>
+  <li>imgタグの相対パスを使うことでWeb上でも正しく表示される</li>
+</ul>
+
+</body>
+</html>
