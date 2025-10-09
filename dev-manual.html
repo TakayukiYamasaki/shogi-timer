@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>将棋タイマー開発環境マニュアル</title>
+<style>
+body { 
+    font-family: sans-serif; 
+    line-height: 1.6; 
+    background:#f9f9f9; 
+    margin:20px;
+    max-width: 900px;
+}
+h1 { margin-top: 20px; font-size:2em; }
+h2 { margin-top:30px; font-size:1.5em; }
+h3 { margin-top:20px; font-size:1.2em; }
+pre { background:#eee; padding:10px; overflow-x:auto; border-radius:5px; }
+ul, ol { margin-left:20px; }
+a { text-decoration:none; color:#0645AD; }
+a:hover { text-decoration:underline; }
+table { border-collapse: collapse; width:100%; margin-top:10px; }
+th, td { border:1px solid #ccc; padding:8px; text-align:left; }
+</style>
+</head>
+<body>
+
+<h1>VSCode &amp; GitHub 活用マニュアル</h1>
+<p>～将棋タイマーを制作した後に、開発環境と公開手順を学ぼう～</p>
+<hr>
+
+<h2>目次</h2>
+<ol>
+<li><a href="#chapter1">はじめに</a></li>
+<li><a href="#chapter2">VSCode の準備</a></li>
+<li><a href="#chapter3">GitHub リポジトリ作成</a></li>
+<li><a href="#chapter4">Git を使ったコミットとプッシュ</a></li>
+<li><a href="#chapter5">GitHub Pages で公開</a></li>
+<li><a href="#chapter6">授業での進行例</a></li>
+</ol>
+
+<h2 id="chapter1">1章 はじめに</h2>
+<p>将棋タイマーを作成した後に、自分の作品を GitHub で管理し、Web 上に公開する手順を学びます。</p>
+
+<h2 id="chapter2">2章 VSCode の準備</h2>
+<ul>
+<li>VSCode をインストール</li>
+<li>拡張機能「Live Server」をインストール</li>
+<li>Git がインストールされていることを確認</li>
+<li>リポジトリフォルダを VSCode で開く</li>
+</ul>
+
+<h2 id="chapter3">3章 GitHub リポジトリ作成</h2>
+<ol>
+<li>GitHub にログインして新しいリポジトリを作成</li>
+<li>README.md を作成して初回コミット</li>
+<li>Public リポジトリがおすすめ（授業共有しやすい）</li>
+</ol>
+
+<h2 id="chapter4">4章 Git を使ったコミットとプッシュ</h2>
+<p>ターミナルで以下を実行します：</p>
+<pre><code>git init
+git add .
+git commit -m "初回コミット"
+git remote add origin &lt;リポジトリURL&gt;
+git push -u origin main</code></pre>
+
+<p>変更を加えたら、<code>add → commit → push</code> の順で更新します。</p>
+
+<h2 id="chapter5">5章 GitHub Pages で公開</h2>
+<ol>
+<li>GitHub リポジトリの「Settings → Pages」にアクセス</li>
+<li>Main branch / root を選択して保存</li>
+<li>数分後、公開 URL が発行される</li>
+<li>例: <code>https://username.github.io/shogi-timer/</code></li>
+</ol>
+
+<h2 id="chapter6">6章 授業での進行例</h2>
+<table>
+<tr><th>時間</th><th>内容</th></tr>
+<tr><td>0:00-0:20</td><td>VSCode と GitHub の概要、アカウント作成</td></tr>
+<tr><td>0:20-0:50</td><td>HTML/CSS/JS ファイル作成、Live Server で確認</td></tr>
+<tr><td>0:50-1:20</td><td>Git 初期化、リモートリポジトリ設定、初回コミット &amp; プッシュ</td></tr>
+<tr><td>1:20-1:40</td><td>GitHub Pages 公開、URL 確認</td></tr>
+<tr><td>1:40-2:00</td><td>変更作業 → コミット → プッシュ → 公開反映の体験</td></tr>
+</table>
+
+<hr>
+<p><a href="manual.html">タイマー制作教材に戻る</a></p>
+
+</body>
+</html>
