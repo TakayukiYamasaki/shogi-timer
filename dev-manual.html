@@ -115,5 +115,40 @@ git config --global user.email "taro@example.com"</code></pre>
 <hr>
 <p><a href="manual.html">タイマー制作教材に戻る</a></p>
 
+<script>
+// ページ内すべての <pre><code> にコピー機能を追加
+document.querySelectorAll("pre code").forEach((codeBlock) => {
+  // ボタンを作成
+  const button = document.createElement("button");
+  button.textContent = "コピー";
+  button.style.cssText = `
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 0.8em;
+    padding: 4px 8px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  `;
+
+  // ラッパーdivを作って配置を調整
+  const wrapper = document.createElement("div");
+  wrapper.style.position = "relative";
+  codeBlock.parentNode.parentNode.replaceChild(wrapper, codeBlock.parentNode);
+  wrapper.appendChild(codeBlock.parentNode);
+  wrapper.appendChild(button);
+
+  // クリック時の動作
+  button.addEventListener("click", () => {
+    navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+      button.textContent = "コピーしました!";
+      setTimeout(() => (button.textContent = "コピー"), 1500);
+    });
+  });
+});
+</script>
+
 </body>
 </html>
