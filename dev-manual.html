@@ -34,6 +34,7 @@ th, td { border:1px solid #ccc; padding:8px; text-align:left; }
 <li><a href="#chapter2">VSCode の準備</a></li>
 <li><a href="#chapter3">GitHub リポジトリ作成</a></li>
 <li><a href="#chapter4">Git を使ったコミットとプッシュ</a></li>
+<li><a href="#chapter45">Git の初期設定と確認</a></li>
 <li><a href="#chapter5">GitHub Pages で公開</a></li>
 <li><a href="#chapter6">授業での進行例</a></li>
 </ol>
@@ -65,6 +66,34 @@ git remote add origin &lt;リポジトリURL&gt;
 git push -u origin main</code></pre>
 
 <p>変更を加えたら、<code>add → commit → push</code> の順で更新します。</p>
+
+<h2 id="chapter45">4.5章 Git の初期設定と確認</h2>
+
+<h3>1. ユーザー情報を登録</h3>
+<p>初回のみ、以下を入力して自分の名前とメールアドレスを設定します。</p>
+<pre><code>git config --global user.name "自分の名前"
+git config --global user.email "自分のメールアドレス"</code></pre>
+<p>例：</p>
+<pre><code>git config --global user.name "Taro Hamada"
+git config --global user.email "taro@example.com"</code></pre>
+<p>※グローバル設定はパソコン全体に適用されます。共有PCでは <code>--global</code> を省略して「このプロジェクトだけ」に設定してもOKです。</p>
+
+<h3>2. 設定内容を確認</h3>
+<p>現在の設定を確認するには以下のコマンドを使います。</p>
+<pre><code>git config --list</code></pre>
+<p>ユーザー名だけ確認したい場合：</p>
+<pre><code>git config user.name</code></pre>
+<p>メールアドレスだけ確認したい場合：</p>
+<pre><code>git config user.email</code></pre>
+
+<h3>3. よくあるトラブル</h3>
+<ul>
+<li>設定ミス → コミットに正しい名前が残らない</li>
+<li>設定していない → 初回コミット時に警告が出る</li>
+<li>グローバル設定を別の人が上書きしてしまう（共用PC注意）</li>
+</ul>
+
+<p>授業では「<code>git config --list</code>」で設定確認 → OKが出たら初回コミット、という流れにするとスムーズです。</p>
 
 <h2 id="chapter5">5章 GitHub Pages で公開</h2>
 <ol>
