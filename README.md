@@ -27,12 +27,17 @@
 ## ファイル構成
 ```
 shogi-timer/
-├── index.html        # メインのHTMLファイル（タイマー画面）
-├── manual.html       # タイマー制作教材マニュアル
-├── dev-manual.html   # VSCode・GitHub 公開手順マニュアル
-├── style.css         # タイマーとボタンのスタイル
-├── script.js         # タイマーの動作を制御するJavaScript
-└── README.md         # プロジェクト説明
+├── index.html
+├── manual.html
+├── dev-manual.html
+├── style.css
+├── script.js
+├── README.md
+├── images/
+├── CSS/
+│   └── manual-style.css
+└── js/
+    └── add-copy-button.js
 ``` 
 ---
 

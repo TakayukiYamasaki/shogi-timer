@@ -1,32 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>将棋タイマー教材版</title>
-<style>
-body { 
-    text-align: left; 
-    font-family: sans-serif; 
-    line-height: 1.6; 
-    background:#f9f9f9; 
-    margin:20px;
-}
-h1 { margin-top: 20px; font-size:2em; }
-h2 { margin-top:30px; font-size:1.5em; }
-.timer { font-size:48px; margin:20px 0; }
-button { padding:10px 20px; font-size:16px; margin:5px; cursor:pointer; }
-pre { 
-    background:#eee; 
-    padding:10px; 
-    overflow-x:auto; 
-    border-radius:5px; 
-}
-hr { margin:30px 0; }
-ul, ol { margin-left:20px; }
-img { max-width:100%; height:auto; border:1px solid #ccc; border-radius:5px; margin:10px 0; }
-a { text-decoration:none; color: #0645AD; }
-a:hover { text-decoration:underline; }
-</style>
+  <meta charset="UTF-8">
+  <title>将棋タイマー教材版</title>
+  <link rel="stylesheet" href="css/manual-style.css">
 </head>
 <body>
 
@@ -52,6 +29,7 @@ a:hover { text-decoration:underline; }
 <p>将棋には「持ち時間」を決めて対局するルールがあります。そのときに使うのが「将棋タイマー」です。</p>
 <p>今回はWebブラウザで動くアプリとして作ります。</p>
 <p>学ぶこと: <b>HTML</b>、<b>CSS</b>、<b>JavaScript</b></p>
+<img src="images/shogi-timer-sample.png" alt="将棋タイマー完成例" width="300">
 
 <h2 id="chapter2">2章　準備</h2>
 <ul>
@@ -189,40 +167,6 @@ resetBtn.addEventListener("click", () => {
 <hr>
 <p><a href="dev-manual.html">VSCode・GitHub で公開する手順を見る</a></p>
 
-<script>
-// ページ内すべての <pre><code> にコピー機能を追加
-document.querySelectorAll("pre code").forEach((codeBlock) => {
-  // ボタンを作成
-  const button = document.createElement("button");
-  button.textContent = "コピー";
-  button.style.cssText = `
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    font-size: 0.8em;
-    padding: 4px 8px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  `;
-
-  // ラッパーdivを作って配置を調整
-  const wrapper = document.createElement("div");
-  wrapper.style.position = "relative";
-  codeBlock.parentNode.parentNode.replaceChild(wrapper, codeBlock.parentNode);
-  wrapper.appendChild(codeBlock.parentNode);
-  wrapper.appendChild(button);
-
-  // クリック時の動作
-  button.addEventListener("click", () => {
-    navigator.clipboard.writeText(codeBlock.innerText).then(() => {
-      button.textContent = "コピーしました!";
-      setTimeout(() => (button.textContent = "コピー"), 1500);
-    });
-  });
-});
-</script>
-
+  <script src="js/add-copy-button.js"></script>
 </body>
 </html>

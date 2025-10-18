@@ -1,26 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>将棋タイマー開発環境マニュアル</title>
-<style>
-body { 
-    font-family: sans-serif; 
-    line-height: 1.6; 
-    background:#f9f9f9; 
-    margin:20px;
-    max-width: 900px;
-}
-h1 { margin-top: 20px; font-size:2em; }
-h2 { margin-top:30px; font-size:1.5em; }
-h3 { margin-top:20px; font-size:1.2em; }
-pre { background:#eee; padding:10px; overflow-x:auto; border-radius:5px; }
-ul, ol { margin-left:20px; }
-a { text-decoration:none; color:#0645AD; }
-a:hover { text-decoration:underline; }
-table { border-collapse: collapse; width:100%; margin-top:10px; }
-th, td { border:1px solid #ccc; padding:8px; text-align:left; }
-</style>
+  <meta charset="UTF-8">
+  <title>将棋タイマー開発環境マニュアル</title>
+  <link rel="stylesheet" href="css/manual-style.css">
 </head>
 <body>
 
@@ -115,40 +98,6 @@ git config --global user.email "taro@example.com"</code></pre>
 <hr>
 <p><a href="manual.html">タイマー制作教材に戻る</a></p>
 
-<script>
-// ページ内すべての <pre><code> にコピー機能を追加
-document.querySelectorAll("pre code").forEach((codeBlock) => {
-  // ボタンを作成
-  const button = document.createElement("button");
-  button.textContent = "コピー";
-  button.style.cssText = `
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    font-size: 0.8em;
-    padding: 4px 8px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  `;
-
-  // ラッパーdivを作って配置を調整
-  const wrapper = document.createElement("div");
-  wrapper.style.position = "relative";
-  codeBlock.parentNode.parentNode.replaceChild(wrapper, codeBlock.parentNode);
-  wrapper.appendChild(codeBlock.parentNode);
-  wrapper.appendChild(button);
-
-  // クリック時の動作
-  button.addEventListener("click", () => {
-    navigator.clipboard.writeText(codeBlock.innerText).then(() => {
-      button.textContent = "コピーしました!";
-      setTimeout(() => (button.textContent = "コピー"), 1500);
-    });
-  });
-});
-</script>
-
+  <script src="js/add-copy-button.js"></script>
 </body>
 </html>
