@@ -50,6 +50,44 @@ git remote add origin &lt;リポジトリURL&gt;
 git push -u origin main</code></pre>
 
   <p>変更を加えたら、<code>add → commit → push</code> の順で更新します。</p>
+  <details>
+  <summary><b>各コマンドの簡単解説（クリックで開く）</b></summary>
+  <div style="margin-left:1em;">
+
+  <pre><code>git init</code></pre>
+  現在のフォルダを「Git管理フォルダ」に変えます。
+  （＝ここから変更履歴を記録できるようになる）
+
+  <pre><code>git add .</code></pre>
+  フォルダ内のすべての変更を「次のコミットに追加」します。
+  （※ピリオド「.」は「全部」という意味）
+
+  <pre><code>git commit -m "初回コミット"</code></pre>
+  変更内容を保存します（スナップショットを取るようなイメージ）。
+  「" "」の中はメッセージで、どんな変更かを簡単に書きます。
+
+  <pre><code>git branch -M main</code></pre>
+  メインのブランチ（作業の軸）を「main」に変更します。
+  （※デフォルトが「master」になっていることがあるため、このコマンドで統一します）
+
+  <pre><code>git remote add origin &lt;リポジトリURL&gt;</code></pre>
+  自分のPCのフォルダと、GitHub上のリポジトリをつなげます。
+  （※「origin」は接続の名前）
+
+  <pre><code>git push -u origin main</code></pre>
+  ローカルで保存した内容をGitHubにアップロードします。
+  （これでWeb上にコードが反映されます）
+
+  <hr>
+  補足：<br>
+  この6行を順に実行すれば、<b>「最初のアップロード（初回プッシュ）」</b>が完了します。<br>
+  次回以降は変更後に以下の3行だけでOKです。
+  <pre><code>git add .
+git commit -m "変更内容"
+git push</code></pre>
+
+  </div>
+  </details>
 
   <h2 id="chapter45">4.5章 Git の初期設定と確認</h2>
 
